@@ -1,0 +1,84 @@
+---
+/* A project card. variant "active" → CTA links out; variant "soon" → CTA is a
+   muted button that scrolls to + focuses the email input ([data-focus-email]
+   is wired up in index.astro). */
+const { label, name, description, variant = "active", href, cta } = Astro.props;
+const isActive = variant === "active";
+---
+
+<article class:list={["card", { "card--soon": !isActive }]}>
+  <p class="card__label">{label}</p>
+  <h2 class="card__name">{name}</h2>
+  <p class="card__desc">{description}</p>
+  {
+    isActive ? (
+      <a class="card__cta" href={href}>{cta} →</a>
+    ) : (
+      <button class="card__cta card__cta--soon" type="button" data-focus-email>
+        {cta}
+      </button>
+    )
+  }
+</article>
+
+<style>
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 24px;
+    border: 1px solid var(--concrete-gray);
+    border-radius: 6px;
+  }
+  .card__label {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+  }
+  .card--soon .card__label {
+    color: var(--ink-70);
+  }
+  .card__name {
+    font-size: 24px;
+  }
+  .card--soon .card__name {
+    color: var(--ink-70);
+  }
+  .card__desc {
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--ink-70);
+  }
+
+  .card__cta {
+    margin-top: 8px;
+    align-self: flex-start;
+    font-family: var(--font-mono);
+    font-size: 13px;
+  }
+  /* active — link, Konbini Blue accent on hover */
+  a.card__cta {
+    color: var(--ink-black);
+    text-decoration: none;
+  }
+  a.card__cta:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--konbini-blue);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+  }
+  /* soon — muted, reads as not-yet-live but is still clickable */
+  .card__cta--soon {
+    padding: 8px 14px;
+    border: 1px solid var(--concrete-gray);
+    border-radius: 4px;
+    background: var(--concrete-gray);
+    color: var(--ink-70);
+    cursor: pointer;
+    transition: color 120ms ease-out;
+  }
+  .card__cta--soon:hover {
+    color: var(--ink-black);
+  }
+</style>
