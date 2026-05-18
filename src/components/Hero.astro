@@ -1,0 +1,145 @@
+---
+/* Hero — H1 composed across two scales: "Mostly" small and quiet,
+   "Japan." huge. The composition is the Marquee move at every viewport. */
+---
+
+<section class="hero">
+  <div class="wrap hero__inner">
+    <p class="hero__eyebrow">allstarsteven · hub · 2026—</p>
+    <h1 class="hero__h1">
+      <span class="hero__l1">Mostly</span>
+      <span class="hero__l2">Japan.</span>
+    </h1>
+    <div class="hero__bottom">
+      <p class="hero__sub">
+        Sometimes other things. <b>Japan Finds</b> is live.
+        <b>Shop</b> launches soon. Email gets you both.
+      </p>
+      <ul class="hero__meta">
+        <li>Vol. 01</li>
+        <li>Two things</li>
+        <li>2026—</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    border-top: 1px solid var(--ink);
+  }
+  .hero__inner {
+    padding-block: 26px 32px;
+  }
+
+  /* Eyebrow — the leading em-dash from the spec is set as a hairline rule,
+     matching both comps. */
+  .hero__eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 22px;
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-65);
+  }
+  .hero__eyebrow::before {
+    content: "";
+    flex: 0 0 28px;
+    height: 1px;
+    background: var(--ink-65);
+  }
+
+  .hero__h1 {
+    font-family: var(--display);
+    font-weight: 700;
+  }
+  .hero__l1 {
+    display: block;
+    font-size: 30px;
+    line-height: 1;
+    letter-spacing: -0.022em;
+    color: var(--ink-65);
+  }
+  .hero__l2 {
+    display: block;
+    padding-top: 4px;
+    font-size: 96px;
+    line-height: 0.86;
+    letter-spacing: -0.055em;
+  }
+
+  .hero__sub {
+    margin-top: 22px;
+    max-width: 320px;
+    font-size: 16px;
+    line-height: 1.45;
+    color: var(--ink-80);
+    text-wrap: pretty;
+  }
+  .hero__sub b {
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  /* Metadata strip — hairline divider above, set in the quiet color. */
+  .hero__meta {
+    list-style: none;
+    padding: 14px 0 0;
+    margin-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    border-top: 1px solid var(--concrete-2);
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-65);
+  }
+
+  @media (min-width: 1200px) {
+    .hero__inner {
+      padding-block: 44px 56px;
+    }
+    .hero__eyebrow {
+      gap: 14px;
+      margin-bottom: 28px;
+      font-size: 12px;
+    }
+    .hero__eyebrow::before {
+      flex-basis: 40px;
+    }
+    .hero__l1 {
+      font-size: 56px;
+      letter-spacing: -0.025em;
+    }
+    .hero__l2 {
+      padding-top: 8px;
+      font-size: 280px;
+      line-height: 0.82;
+      letter-spacing: -0.06em;
+    }
+    .hero__bottom {
+      margin-top: 36px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 64px;
+      align-items: end;
+    }
+    .hero__sub {
+      margin-top: 0;
+      max-width: 520px;
+      font-size: 22px;
+      line-height: 1.4;
+    }
+    .hero__meta {
+      margin-top: 0;
+      font-size: 11px;
+    }
+  }
+</style>

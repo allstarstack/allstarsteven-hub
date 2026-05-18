@@ -1,13 +1,15 @@
 ---
 import "../styles/global.css";
-import Wordmark from "../components/Wordmark.astro";
-import ProjectCard from "../components/ProjectCard.astro";
-import KitForm from "../components/KitForm.astro";
-import SocialRow from "../components/SocialRow.astro";
+import Topbar from "../components/Topbar.astro";
+import Hero from "../components/Hero.astro";
+import SignupBand from "../components/SignupBand.astro";
+import Projects from "../components/Projects.astro";
 import Footer from "../components/Footer.astro";
 
-const title = "AllstarSteven — Creator. Currently obsessed with Japan.";
-const description = "Creator. Currently obsessed with Japan.";
+const title = "AllstarSteven — Mostly Japan.";
+/* Meta description reuses locked spec copy (the hero subhead) — no new prose. */
+const description =
+  "Sometimes other things. Japan Finds is live. Shop launches soon. Email gets you both.";
 const canonical = Astro.site?.href ?? "https://allstarsteven.com/";
 const ogImage = new URL("/og-image.png", Astro.site).href;
 ---
@@ -17,6 +19,7 @@ const ogImage = new URL("/og-image.png", Astro.site).href;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
@@ -39,102 +42,29 @@ const ogImage = new URL("/og-image.png", Astro.site).href;
       type="font/woff2"
       crossorigin
     />
+    <link
+      rel="preload"
+      href="/fonts/inter-400.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/ibm-plex-mono-500.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <meta name="generator" content={Astro.generator} />
   </head>
   <body>
-    <main class="hub">
-      <header class="hero">
-        <h1 class="hero__wordmark"><Wordmark /></h1>
-        <p class="hero__bio">Creator. Currently obsessed with Japan.</p>
-      </header>
-
-      <section class="projects" aria-label="Projects">
-        <ProjectCard
-          variant="active"
-          label="ACTIVE"
-          name="Japan Finds"
-          description="A field guide for shopping Japan. Snacks, drugstores, donki, konbini."
-          href="https://japan.allstarsteven.com"
-          cta="japan.allstarsteven.com"
-        />
-        <ProjectCard
-          variant="soon"
-          label="COMING SOON"
-          name="AllstarSteven Shop"
-          description="Things I actually use. Late 2026."
-          cta="Get notified"
-        />
-      </section>
-
-      <section class="signup" aria-labelledby="signup-heading">
-        <h2 id="signup-heading" class="signup__heading">Stay in the loop</h2>
-        <KitForm />
-      </section>
-
-      <SocialRow />
-      <Footer />
+    <Topbar />
+    <main>
+      <Hero />
+      <SignupBand />
+      <Projects />
     </main>
-
-    <script>
-      // "Coming soon" card CTA → scroll to and focus the Kit email input.
-      const input = document.querySelector(".formkit-input");
-      const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-      for (const btn of document.querySelectorAll("[data-focus-email]")) {
-        btn.addEventListener("click", () => {
-          input?.scrollIntoView({
-            behavior: reduce ? "auto" : "smooth",
-            block: "center",
-          });
-          input?.focus({ preventScroll: true });
-        });
-      }
-    </script>
-
-    <style>
-      .hub {
-        max-width: var(--container);
-        margin: 0 auto;
-        padding: 64px 24px 48px;
-        display: flex;
-        flex-direction: column;
-        gap: 56px;
-      }
-      .hero {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-      }
-      .hero__wordmark {
-        font-size: 40px;
-      }
-      .hero__bio {
-        font-size: 18px;
-        color: var(--ink-70);
-      }
-      .projects {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 16px;
-      }
-      .signup {
-        display: flex;
-        flex-direction: column;
-        gap: 14px;
-      }
-      .signup__heading {
-        font-size: 20px;
-      }
-      @media (min-width: 600px) {
-        .hub {
-          padding-top: 88px;
-        }
-        .hero__wordmark {
-          font-size: 64px;
-        }
-        .projects {
-          grid-template-columns: 1fr 1fr;
-        }
-      }
-    </style>
+    <Footer />
   </body>
 </html>

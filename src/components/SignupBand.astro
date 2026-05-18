@@ -1,0 +1,149 @@
+---
+import KitForm from "./KitForm.astro";
+/* Inverted ink band — the loudest graphic event on the page. Full-bleed:
+   the ink runs edge to edge while .wrap keeps the content aligned.
+   #signup is the target of the Shop card's "Notify me" CTA. */
+---
+
+<section class="band" id="signup" aria-label="Email signup">
+  <div class="wrap band__inner">
+    <p class="band__eyebrow">
+      <span class="band__eyebrow-label">The list</span>
+      <span aria-hidden="true">↘</span>
+    </p>
+
+    <div class="band__heading">
+      <h2 class="band__title">On the list.</h2>
+      <p class="band__sub">
+        Launches, finds, the occasional Japan tangent. No spam, no daily emails.
+      </p>
+    </div>
+
+    <div class="band__form">
+      <KitForm />
+      <p class="band__help">
+        One email when something ships. Maybe also when I find something good.
+        That's it.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .band {
+    position: relative;
+    background: var(--ink);
+    color: var(--rice);
+  }
+  /* hairline rice rules above + below — print-strip feel */
+  .band::before,
+  .band::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: rgba(247, 243, 234, 0.2);
+  }
+  .band::before {
+    top: 14px;
+  }
+  .band::after {
+    bottom: 14px;
+  }
+
+  .band__inner {
+    padding-block: 32px 28px;
+  }
+
+  .band__eyebrow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--rice-65);
+  }
+  .band__eyebrow-label {
+    display: inline-flex;
+    align-items: center;
+  }
+  .band__eyebrow-label::before {
+    content: "▒"; /* tiny tape glyph */
+    margin-right: 10px;
+    letter-spacing: 0;
+    color: var(--rice);
+    transform: translateY(-1px);
+  }
+
+  .band__title {
+    margin-bottom: 10px;
+    font-size: 52px;
+    line-height: 0.92;
+    letter-spacing: -0.04em;
+  }
+  .band__sub {
+    margin-bottom: 22px;
+    max-width: 300px;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--rice-80);
+    text-wrap: pretty;
+  }
+
+  /* Helper — the full spec line, including the closing "That's it." */
+  .band__help {
+    margin-top: 12px;
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 1.7;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--rice-65);
+  }
+
+  @media (min-width: 1200px) {
+    .band::before {
+      top: 18px;
+    }
+    .band::after {
+      bottom: 18px;
+    }
+    .band__inner {
+      padding-block: 56px 52px;
+      display: grid;
+      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+      gap: 64px;
+      align-items: start;
+    }
+    .band__eyebrow {
+      grid-column: 1 / -1;
+      margin-bottom: 14px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(247, 243, 234, 0.18);
+      font-size: 12px;
+    }
+    .band__title {
+      margin-bottom: 18px;
+      font-size: 108px;
+      line-height: 0.88;
+      letter-spacing: -0.045em;
+    }
+    .band__sub {
+      margin-bottom: 0;
+      max-width: 480px;
+      font-size: 19px;
+      line-height: 1.45;
+    }
+    .band__help {
+      max-width: 420px;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+    }
+  }
+</style>

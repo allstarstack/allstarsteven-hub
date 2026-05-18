@@ -1,0 +1,453 @@
+---
+/* The projects — two deliberately unalike objects:
+   Japan Finds is a tall portal card with a Konbini-Blue index column;
+   Shop is a short scaffold card with a diagonal concrete hatch on its
+   leading edge. They share a top baseline on desktop; the empty space
+   under Shop is load-bearing — it reads as "room here later". */
+---
+
+<section class="projects">
+  <div class="wrap">
+    <div class="projects__head">
+      <h2 class="projects__title">The projects</h2>
+      <span class="projects__count" aria-hidden="true">02 · ↓</span>
+    </div>
+
+    <div class="projects__grid">
+      <!-- Japan Finds — tall portal, Konbini-Blue index column -->
+      <article class="portal" aria-labelledby="jf-title">
+        <div class="portal__body">
+          <p class="portal__eyebrow">No. 01 · Field guide</p>
+          <span class="portal__status">Live</span>
+          <h3 id="jf-title" class="portal__title">Japan Finds</h3>
+          <p class="portal__oneliner">Japan, but the useful parts.</p>
+          <p class="portal__tag">
+            Snacks, drugstore wins, donki finds. The whole DM inbox, categorized.
+          </p>
+          <a href="https://japan.allstarsteven.com" class="portal__cta">
+            See the finds →
+          </a>
+        </div>
+        <aside class="portal__index" aria-hidden="true">
+          <p class="portal__index-label">Inside</p>
+          <p class="portal__index-item">Snacks</p>
+          <p class="portal__index-item">Drugstore</p>
+          <p class="portal__index-item">Donki</p>
+          <p class="portal__index-foot">JF / 01</p>
+        </aside>
+      </article>
+
+      <!-- Shop — short scaffold card, hatched leading edge -->
+      <article class="scaffold" aria-labelledby="shop-title">
+        <span class="scaffold__strip" aria-hidden="true">
+          <span class="scaffold__tag">§02 · In build</span>
+        </span>
+        <div class="scaffold__eyebrow">
+          <span>No. 02</span>
+          <span class="scaffold__status">Launching 2026</span>
+        </div>
+        <h3 id="shop-title" class="scaffold__title">Shop</h3>
+        <p class="scaffold__oneliner">
+          Stuff I'd actually buy. Live when the first batch is real.
+        </p>
+        <a href="#signup" class="scaffold__cta">Notify me →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .projects {
+    padding-block: 22px 30px;
+  }
+
+  .projects__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--ink);
+  }
+  .projects__title {
+    font-size: 22px;
+    letter-spacing: -0.02em;
+  }
+  .projects__count {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-65);
+  }
+
+  .projects__grid {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding-top: 22px;
+  }
+
+  /* ── Japan Finds — portal ────────────────────────────────────────── */
+  .portal {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 88px;
+    min-height: 320px;
+    border: 1px solid var(--ink);
+    background: var(--rice);
+    overflow: hidden;
+  }
+  .portal__body {
+    display: flex;
+    flex-direction: column;
+    padding: 22px 18px 20px;
+  }
+  .portal__eyebrow {
+    margin-bottom: 14px;
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-65);
+  }
+  /* Status pill — white on Konbini Blue clears WCAG AA (4.58:1); the spec's
+     "rice text" would not (4.14:1), so white is used, as in both comps. */
+  .portal__status {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 10px;
+    padding: 3px 8px 4px;
+    background: var(--konbini);
+    color: #fff;
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .portal__status::before {
+    content: "";
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #fff;
+  }
+  .portal__title {
+    margin-bottom: 10px;
+    font-size: 44px;
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+  }
+  .portal__oneliner {
+    margin-bottom: 4px;
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.2;
+    letter-spacing: -0.012em;
+  }
+  .portal__tag {
+    margin-bottom: 16px;
+    font-size: 13.5px;
+    line-height: 1.45;
+    color: var(--ink-80);
+  }
+  .portal__cta {
+    align-self: flex-start;
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 14px;
+    background: var(--ink);
+    color: var(--rice);
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  /* The right-edge Konbini-Blue index column — a typographic preview of
+     what's inside. Decorative (aria-hidden); white tints, as in the comps. */
+  .portal__index {
+    display: flex;
+    flex-direction: column;
+    padding: 16px 12px;
+    background: var(--konbini);
+    color: #fff;
+    border-left: 1px solid var(--ink);
+  }
+  .portal__index-label {
+    margin-bottom: 4px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.65);
+  }
+  .portal__index-item {
+    padding: 9px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.05;
+    letter-spacing: -0.018em;
+  }
+  .portal__index-foot {
+    margin-top: auto;
+    padding-top: 12px;
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.65);
+  }
+
+  /* ── Shop — scaffold ─────────────────────────────────────────────── */
+  .scaffold {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 18px 18px 18px 80px;
+    border: 1px solid var(--ink);
+    background: var(--rice);
+    overflow: hidden;
+  }
+  .scaffold__strip {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: repeating-linear-gradient(
+      135deg,
+      var(--concrete) 0 8px,
+      var(--rice) 8px 16px
+    );
+    border-right: 1px solid var(--ink);
+  }
+  .scaffold__tag {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg); /* reads bottom-to-top */
+    padding: 6px 4px;
+    background: var(--rice);
+    box-shadow: 0 0 0 1px var(--ink);
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  .scaffold__eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-65);
+  }
+  .scaffold__status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 2px 6px 3px;
+    box-shadow: inset 0 0 0 1px var(--ink);
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    color: var(--ink);
+  }
+  .scaffold__status::before {
+    content: "";
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--ink);
+  }
+  .scaffold__title {
+    margin: 4px 0;
+    font-size: 32px;
+    line-height: 0.98;
+    letter-spacing: -0.028em;
+  }
+  .scaffold__oneliner {
+    margin-bottom: 16px;
+    max-width: 280px;
+    font-size: 13.5px;
+    line-height: 1.4;
+    color: var(--ink-80);
+  }
+  .scaffold__cta {
+    align-self: flex-start;
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 9px 12px;
+    box-shadow: inset 0 0 0 1.5px var(--ink);
+    color: var(--ink);
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .scaffold__cta:hover {
+    background: var(--ink);
+    color: var(--rice);
+  }
+
+  @media (min-width: 1200px) {
+    .projects {
+      padding-block: 26px 36px;
+    }
+    .projects__head {
+      padding-bottom: 12px;
+    }
+    .projects__title {
+      font-size: 32px;
+      letter-spacing: -0.025em;
+    }
+    .projects__count {
+      font-size: 12px;
+      letter-spacing: 0.2em;
+    }
+    .projects__grid {
+      display: grid;
+      grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
+      gap: 32px;
+      align-items: start;
+      padding-top: 36px;
+    }
+
+    .portal {
+      grid-template-columns: minmax(0, 1fr) 220px;
+      min-height: 520px;
+    }
+    .portal__body {
+      padding: 36px;
+    }
+    .portal__eyebrow {
+      margin-bottom: 22px;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+    }
+    .portal__status {
+      margin-bottom: 18px;
+      padding: 4px 10px 5px;
+      gap: 7px;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+    }
+    .portal__status::before {
+      width: 6px;
+      height: 6px;
+    }
+    .portal__title {
+      margin-bottom: 18px;
+      font-size: 88px;
+      line-height: 0.94;
+      letter-spacing: -0.04em;
+    }
+    .portal__oneliner {
+      margin-bottom: 6px;
+      font-size: 24px;
+      line-height: 1.15;
+      letter-spacing: -0.015em;
+    }
+    .portal__tag {
+      margin-bottom: 28px;
+      max-width: 440px;
+      font-size: 16px;
+    }
+    .portal__cta {
+      padding: 16px 22px;
+      gap: 10px;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+    }
+    .portal__index {
+      padding: 26px 22px 22px;
+    }
+    .portal__index-label {
+      margin-bottom: 6px;
+      padding-bottom: 14px;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+    }
+    .portal__index-item {
+      padding: 16px 0;
+      font-size: 28px;
+      letter-spacing: -0.025em;
+    }
+    .portal__index-foot {
+      padding-top: 16px;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+    }
+
+    .scaffold {
+      padding: 36px 32px 32px 100px;
+      min-height: 320px;
+    }
+    .scaffold__strip {
+      width: 70px;
+    }
+    .scaffold__tag {
+      padding: 8px 5px;
+      font-size: 11px;
+      letter-spacing: 0.28em;
+    }
+    .scaffold__eyebrow {
+      justify-content: space-between;
+      margin-bottom: 22px;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+    }
+    .scaffold__status {
+      padding: 3px 9px 4px;
+      gap: 7px;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+    }
+    .scaffold__status::before {
+      width: 5px;
+      height: 5px;
+    }
+    .scaffold__title {
+      margin: 4px 0 16px;
+      font-size: 64px;
+      line-height: 0.96;
+      letter-spacing: -0.035em;
+    }
+    .scaffold__oneliner {
+      margin-bottom: 28px;
+      max-width: 320px;
+      font-size: 16px;
+      line-height: 1.45;
+    }
+    .scaffold__cta {
+      padding: 14px 20px;
+      gap: 10px;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+    }
+  }
+</style>
