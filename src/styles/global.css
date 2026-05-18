@@ -1,6 +1,7 @@
-/* AllstarSteven Hub — fonts, tokens, reset, base.
-   Parent-brand hub: neutral palette so future projects aren't visually
-   constrained. Konbini Blue is reserved for the Japan Finds card accent. */
+/* AllstarSteven Hub — V4 Marquee. Fonts, tokens, reset, base, shared layout.
+   Mobile-first; the desktop layout takes over at 1200px (each component
+   carries its own min-width:1200px block). Konbini Blue is reserved for the
+   Japan Finds card and is used nowhere else. */
 
 /* ── Self-hosted fonts (no external CDN) ─────────────────────────────── */
 @font-face {
@@ -27,19 +28,35 @@
 
 /* ── Tokens ──────────────────────────────────────────────────────────── */
 :root {
-  --rice-white: #f7f3ea;
-  --ink-black: #151515;
-  --concrete-gray: #e6e1d8;
-  --konbini-blue: #176bff; /* Japan Finds card accent ONLY */
+  --rice:       #f7f3ea;
+  --ink:        #151515;
+  --concrete:   #e6e1d8;
+  --concrete-2: #d6d0c2; /* deeper concrete — hairline rules on rice */
+  --konbini:    #176bff; /* Japan Finds card accent ONLY */
 
-  /* Ink tint for secondary text — same hue, AA-safe on rice + concrete */
-  --ink-70: #151515b3;
+  /* Muted text. ink-65 is the spec's "ink-65"; on rice it clears WCAG AA
+     for normal text (5.4:1). The comps' lighter 55% tint did not (3.9:1). */
+  --ink-65:  rgba(21, 21, 21, 0.65);
+  --ink-80:  rgba(21, 21, 21, 0.80);
+  --rice-65: rgba(247, 243, 234, 0.65);
+  --rice-80: rgba(247, 243, 234, 0.80);
 
-  --font-display: "Space Grotesk", system-ui, sans-serif;
-  --font-body: "Inter", system-ui, sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
+  /* Fonts self-hosted above. System fallbacks dropped per the build spec —
+     only the generic family is kept as an absolute last resort. */
+  --display: "Space Grotesk", sans-serif;
+  --body:    "Inter", sans-serif;
+  --mono:    "IBM Plex Mono", monospace;
 
-  --container: 640px;
+  /* Layout. Mobile is fluid, capped to a tidy column; the desktop comp's
+     1200 container + 80px gutter takes over at the 1200px breakpoint. */
+  --gutter:  22px;
+  --col-max: 480px;
+}
+@media (min-width: 1200px) {
+  :root {
+    --gutter:  80px;
+    --col-max: 1200px;
+  }
 }
 
 /* ── Reset ───────────────────────────────────────────────────────────── */
@@ -53,39 +70,54 @@
 }
 html {
   -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
 }
 body {
-  background: var(--rice-white);
-  color: var(--ink-black);
-  font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 1.55;
+  background: var(--rice);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 15px;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
 }
 img,
 svg {
   display: block;
   max-width: 100%;
 }
-a {
-  color: inherit;
-}
-button,
-input {
-  font: inherit;
-  color: inherit;
-}
 h1,
 h2,
 h3 {
-  font-family: var(--font-display);
+  font-family: var(--display);
   font-weight: 700;
   line-height: 1.05;
 }
 
-/* ── Utilities ───────────────────────────────────────────────────────── */
+/* ── Shared container ─────────────────────────────────────────────────
+   Sections run full-width so the ink signup band can bleed edge to edge;
+   .wrap constrains the content inside each one. */
+.wrap {
+  width: 100%;
+  max-width: var(--col-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* ── Utilities / a11y ─────────────────────────────────────────────────── */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -97,20 +129,24 @@ h3 {
   white-space: nowrap;
   border: 0;
 }
-
-/* Visible keyboard focus — ink ring; outline-offset keeps it visible even
-   on the ink-black submit button (the ring sits on the rice background). */
 :focus-visible {
-  outline: 2px solid var(--ink-black);
+  outline: 2px solid var(--ink);
   outline-offset: 2px;
 }
 
+@media (min-width: 1200px) {
+  body {
+    font-size: 16px;
+  }
+}
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
   *,
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
   }
 }
